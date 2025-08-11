@@ -12,13 +12,14 @@ rAI<-matrix(0,n,n)
 rAI<-(strength%*%t(strength))/(sum(strength))
 Qq<-AI-rAI  #modularity matrix
 diag(Qq)<-0
-
+	
+Q<-sum(Qq)/sum(strength)
 mod<-array(0,k)
 
 for (i in 1:k) {
 	mod[i]<-sum(Qq[which(clusass==i),which(clusass==i)])/sum(strength[which(clusass==i)])
 }
-	return(mod)
+	return(list(mod=mod,Q=Q))
 }
 
 
